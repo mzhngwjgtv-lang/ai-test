@@ -748,7 +748,14 @@ function selectOption(chosenOpt, selectedBtn) {
   });
 
   selectedBtn.classList.add('selected');
-  document.getElementById('next-btn').style.display = 'block';
+  
+  const nextBtn = document.getElementById('next-btn');
+  if (currentIdx === questions.length - 1) {
+    nextBtn.innerText = 'Посмотреть результаты 📊';
+  } else {
+    nextBtn.innerText = 'Следующий вопрос →';
+  }
+  nextBtn.style.display = 'block';
 }
 
 function nextQuestion() {
