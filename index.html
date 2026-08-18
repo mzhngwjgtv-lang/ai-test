@@ -823,66 +823,6 @@ function showResults() {
 renderQuestion();
 </script>
   <!-- ============================================== -->
-<!-- ПЛАВАЮЩИЙ AI-КОНСУЛЬТАНТ В ПРАВОМ НИЖНЕМ УГЛУ -->
-<!-- ============================================== -->
-<div id="ai-chat-widget" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-    
-    <!-- Всплывающее окно чата (по умолчанию скрыто) -->
-    <div id="ai-chat-window" style="display: none; width: 380px; max-width: calc(100vw - 30px); height: 580px; max-height: calc(100vh - 100px); background: #ffffff; border-radius: 20px; box-shadow: 0 12px 35px rgba(0,0,0,0.2); border: 1px solid #e2e8f0; overflow: hidden; flex-direction: column; margin-bottom: 12px;">
-        
-        <!-- Шапка окна чата -->
-        <div style="background: #2563eb; color: #ffffff; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between;">
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <div style="width: 32px; height: 32px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px;">🤖</div>
-                <div>
-                    <div style="font-weight: 700; font-size: 14px; line-height: 1.2;">AI-Консультант</div>
-                    <div style="font-size: 11px; opacity: 0.85;">Подбор нейросетей под задачу</div>
-                </div>
-            </div>
-            <button onclick="toggleAiChat()" style="background: none; border: none; color: #ffffff; font-size: 20px; cursor: pointer; padding: 4px 8px; line-height: 1; border-radius: 6px;">✕</button>
-        </div>
-        
-     <!-- Контейнер с i-frame Pro-Talk -->
-<div style="flex: 1; width: 100%; height: calc(100% - 60px); background: #ffffff;">
-    <iframe 
-        style="width: 100%; height: 100%; border: none; display: block;" 
-        src="https://functions.pro-talk.ru/api/v1.0/chatgpt_widget_dialog_api?record_id=recEpuv2IkbumSz4m&promt_id=72208&lang=ru&fullscreen=0&prod=1&file=1">
-    </iframe>
-</div>
-        </div>
-    </div>
-
-    <!-- Кнопка вызова бота -->
-    <div style="display: flex; justify-content: flex-end; align-items: center; gap: 10px;">
-        <!-- Текстовая подсказка рядом с кнопкой -->
-        <div id="ai-chat-badge" onclick="toggleAiChat()" style="background: #1e293b; color: #ffffff; padding: 9px 15px; border-radius: 20px; font-size: 13px; font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.15); cursor: pointer; user-select: none;">
-            Подобрать нейросеть 🤖
-        </div>
-
-        <!-- Круглая кнопка с иконкой -->
-        <button id="ai-chat-btn" onclick="toggleAiChat()" style="width: 58px; height: 58px; border-radius: 50%; background: #2563eb; color: #ffffff; border: none; cursor: pointer; box-shadow: 0 8px 25px rgba(37, 99, 235, 0.45); display: flex; align-items: center; justify-content: center; font-size: 26px; transition: transform 0.2s ease;">
-            💬
-        </button>
-    </div>
-</div>
-
-<script>
-function toggleAiChat() {
-    var win = document.getElementById('ai-chat-window');
-    var btn = document.getElementById('ai-chat-btn');
-    var badge = document.getElementById('ai-chat-badge');
-    
-    if (win.style.display === 'none' || win.style.display === '') {
-        win.style.display = 'flex';
-        btn.innerHTML = '✕';
-        if (badge) badge.style.display = 'none';
-    } else {
-        win.style.display = 'none';
-        btn.innerHTML = '💬';
-        if (badge) badge.style.display = 'block';
-    }
-}
-</script>
 <!-- ============================================== -->
 </body>
 </html>
