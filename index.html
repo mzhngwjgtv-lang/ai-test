@@ -822,7 +822,115 @@ function showResults() {
 
 renderQuestion();
 </script>
-  <!-- ============================================== -->
+
 <!-- ============================================== -->
+<!-- ПЛАВАЮЩИЙ AI-КОНСУЛЬТАНТ (ГАРАНТИРОВАННАЯ ВИДИМОСТЬ) -->
+<!-- ============================================== -->
+<style>
+  #ai-chat-widget {
+    position: fixed !important;
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px)) !important;
+    right: 16px !important;
+    z-index: 2147483647 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  }
+
+  #ai-chat-window {
+    display: none;
+    width: 380px;
+    height: 580px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+    border: 1px solid #cbd5e1;
+    overflow: hidden;
+    flex-direction: column;
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 640px) {
+    #ai-chat-widget {
+      bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+      right: 12px !important;
+    }
+    #ai-chat-window {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      height: 100dvh !important;
+      border-radius: 0 !important;
+      margin: 0 !important;
+      border: none !important;
+    }
+    #ai-chat-badge {
+      font-size: 12px !important;
+      padding: 8px 12px !important;
+    }
+    #ai-chat-btn {
+      width: 50px !important;
+      height: 50px !important;
+      font-size: 22px !important;
+    }
+  }
+</style>
+
+<div id="ai-chat-widget">
+    <div id="ai-chat-window">
+        <div style="background: #2563eb; color: #ffffff; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 30px; height: 30px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px;">🤖</div>
+                <div>
+                    <div style="font-weight: 700; font-size: 14px; line-height: 1.2;">AI-Консультант</div>
+                    <div style="font-size: 11px; opacity: 0.85;">Подбор нейросетей под задачу</div>
+                </div>
+            </div>
+            <button onclick="toggleAiChat()" style="background: rgba(255,255,255,0.2); border: none; color: #ffffff; font-size: 14px; cursor: pointer; padding: 6px 12px; border-radius: 8px; font-weight: 600;">✕ Закрыть</button>
+        </div>
+        
+        <div style="flex: 1; width: 100%; height: calc(100% - 58px); background: #ffffff;">
+            <iframe 
+                style="width: 100%; height: 100%; border: none; display: block;" 
+                src="https://functions.pro-talk.ru/api/v1.0/chatgpt_widget_dialog_api?record_id=recEpuv2IkbumSz4m&promt_id=72208&lang=ru&fullscreen=0&prod=1&file=1">
+            </iframe>
+        </div>
+    </div>
+
+    <div id="ai-chat-trigger" style="display: flex; justify-content: flex-end; align-items: center; gap: 8px;">
+        <div id="ai-chat-badge" onclick="toggleAiChat()" style="background: #0f172a; color: #ffffff; padding: 9px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.2); cursor: pointer; user-select: none; white-space: nowrap;">
+            Подобрать ИИ 🤖
+        </div>
+
+        <button id="ai-chat-btn" onclick="toggleAiChat()" style="width: 54px; height: 54px; border-radius: 50%; background: #2563eb; color: #ffffff; border: none; cursor: pointer; box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45); display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0;">
+            💬
+        </button>
+    </div>
+</div>
+
+<script>
+function toggleAiChat() {
+    var win = document.getElementById('ai-chat-window');
+    var trigger = document.getElementById('ai-chat-trigger');
+    
+    var isHidden = (win.style.display === 'none' || win.style.display === '');
+    
+    if (isHidden) {
+        win.style.display = 'flex';
+        trigger.style.display = 'none';
+        if (window.innerWidth <= 640) {
+            document.body.style.overflow = 'hidden';
+        }
+    } else {
+        win.style.display = 'none';
+        trigger.style.display = 'flex';
+        document.body.style.overflow = '';
+    }
+}
+</script>
+<!-- ============================================== -->
+
 </body>
 </html>
